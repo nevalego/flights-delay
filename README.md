@@ -60,11 +60,11 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 
 1. Clona este repositorio:
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/nevalego/flights-delay.git
 ```
 2. Navega al directorio del repositorio:
 ```bash
-cd <DIRECTORIO_DEL_REPOSITORIO>
+cd flights-delay
 ```
 3. Abre el Jupyter Notebook:
 ```bash
