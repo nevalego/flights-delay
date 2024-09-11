@@ -31,9 +31,9 @@ El archivo `data.csv` contiene la siguiente información sobre los vuelos:
 - **Distance**: Distancia entre aeropuertos (millas)
 - **TaxiIn**: Tiempo de llegada y llegada a la puerta del aeropuerto de destino, en minutos
 - **TaxiOut**: Tiempo transcurrido entre la salida del aeropuerto de origen y el despegue, en minutos
-- **Cancelled**: ¿Se canceló el vuelo?
+- **Cancelled**: ¿Se canceló el vuelo? 1 = sí, 0 = no
 - **CancellationCode**: Razón de la cancelación
-- **Diverted**: 1 = sí, 0 = no
+- **Diverted**: ¿Se redireccionó el vuelo? 1 = sí, 0 = no
 - **CarrierDelay**: Retraso por parte del transportista (en minutos)
 - **WeatherDelay**: Retraso debido al clima (en minutos)
 - **NASDelay**: Retraso por parte del sistema nacional de aviación (en minutos)
