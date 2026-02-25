@@ -1,48 +1,47 @@
-# Análisis de Retrasos de Vuelos
+# Flight Delay Analysis
 
-Este repositorio contiene un conjunto de datos de vuelos y un script de análisis en Jupyter Notebook para estudiar los factores que afectan los retrasos de vuelos. El objetivo principal es predecir si un vuelo se retrasará más de 3 horas y analizar los tipos de retrasos más comunes en esas circunstancias.
+This repository contains a set of flight data and an analysis script in Jupyter Notebook to study the factors that affect flight delays. The main objective is to predict whether a flight will be delayed by more than 3 hours and to analyse the most common types of delays in such circumstances.
 
-## Contenidos
+## Content
 
-1. **`data.csv`**: Archivo CSV con datos de vuelos.
-2. **`flight_delay_analysis.ipynb`**: Script Jupyter Notebook que realiza el análisis de datos, preprocesamiento y modelado para la predicción de retrasos de vuelos.
+1. **`data.csv`**: CSV file with flight data.
+2. **`flight_delay_analysis.ipynb`**: Jupyter Notebook script that performs data analysis, pre-processing, and modelling for flight delay prediction.
 
 ## Dataset
 
-El archivo `data.csv` contiene la siguiente información sobre los vuelos:
+The `data.csv` file contains the following information about the flights:
+- **DayOfWeek**: Day of the week (1 = Monday, 7 = Sunday)
+- **Date**: Scheduled date
+- **DepTime**: Actual departure time (local, hhmm)
+- **ArrTime**: Actual arrival time (local, hhmm)
+- **CRSArrTime**: Scheduled arrival time (local, hhmm)
+- **UniqueCarrier**: Carrier code
+- **Airline**: Airline
+- **FlightNum**: Flight number
+- **TailNum**: Aircraft tail number
+- **ActualElapsedTime**: Actual time in the air (in minutes) with TaxiIn/Out
+- **CRSElapsedTime**: Estimated flight time (in minutes)
+- **AirTime**: Flight time (in minutes)
+- **ArrDelay**: Difference in minutes between scheduled and actual arrival time
+- **Origin**: IATA code of the airport of origin
+- **Org_Airport**: Name of the airport of origin
+- **Dest**: IATA code of the destination airport
+- **Dest_Airport**: Name of the destination airport
+- **Distance**: Distance between airports (miles)
+- **TaxiIn**: Time of arrival and arrival at the door of the destination airport, in minutes
+- **TaxiOut**: Time elapsed between departure from the origin airport and take-off, in minutes
+- **Cancelled**: Was the flight cancelled? 1 = yes, 0 = no
+- **CancellationCode**: Reason for cancellation
+- **Diverted**: Was the flight diverted? 1 = yes, 0 = no
+- **CarrierDelay**: Delay on the part of the carrier (in minutes)
+- **WeatherDelay**: Delay due to weather (in minutes)
+- **NASDelay**: Delay by the national aviation system (in minutes)
+- **SecurityDelay**: Delay due to security (in minutes)
+- **LateAircraftDelay**: Delay for this reason (in minutes)
 
-- **DayOfWeek**: Día de la semana (1 = Lunes, 7 = Domingo)
-- **Date**: Fecha programada
-- **DepTime**: Hora de salida real (local, hhmm)
-- **ArrTime**: Hora de llegada real (local, hhmm)
-- **CRSArrTime**: Hora de llegada programada (local, hhmm)
-- **UniqueCarrier**: Código del transportista
-- **Airline**: Compañía aérea
-- **FlightNum**: Número de vuelo
-- **TailNum**: Número de cola del avión
-- **ActualElapsedTime**: Tiempo real en el aire (en minutos) con TaxiIn/Out
-- **CRSElapsedTime**: Tiempo estimado de vuelo (en minutos)
-- **AirTime**: Tiempo de vuelo (en minutos)
-- **ArrDelay**: Diferencia en minutos entre la hora de llegada programada y real
-- **Origin**: Código IATA del aeropuerto de origen
-- **Org_Airport**: Nombre del aeropuerto de origen
-- **Dest**: Código IATA del aeropuerto de destino
-- **Dest_Airport**: Nombre del aeropuerto de destino
-- **Distance**: Distancia entre aeropuertos (millas)
-- **TaxiIn**: Tiempo de llegada y llegada a la puerta del aeropuerto de destino, en minutos
-- **TaxiOut**: Tiempo transcurrido entre la salida del aeropuerto de origen y el despegue, en minutos
-- **Cancelled**: ¿Se canceló el vuelo? 1 = sí, 0 = no
-- **CancellationCode**: Razón de la cancelación
-- **Diverted**: ¿Se redireccionó el vuelo? 1 = sí, 0 = no
-- **CarrierDelay**: Retraso por parte del transportista (en minutos)
-- **WeatherDelay**: Retraso debido al clima (en minutos)
-- **NASDelay**: Retraso por parte del sistema nacional de aviación (en minutos)
-- **SecurityDelay**: Retraso debido a seguridad (en minutos)
-- **LateAircraftDelay**: Retraso por este motivo (en minutos)
+## Requisites
 
-## Requisitos
-
-Para ejecutar el Jupyter Notebook, necesitarás tener instalados los siguientes paquetes en tu entorno Python:
+To run Jupyter Notebook, you will need to have the following packages installed in your Python environment:
 
 - `pandas`
 - `numpy`
@@ -50,56 +49,53 @@ Para ejecutar el Jupyter Notebook, necesitarás tener instalados los siguientes 
 - `seaborn`
 - `scikit-learn`
 
-Puedes instalar estos paquetes usando pip:
+You can install these packages using pip:
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn
 ```
 
-## Cómo Ejecutar
+## How to Execute
 
-1. Clona este repositorio:
+1. Clone this repository:
 ```bash
 git clone https://github.com/nevalego/flights-delay.git
 ```
-2. Navega al directorio del repositorio:
+2. Navegate to the repo directory:
 ```bash
 cd flights-delay
 ```
-3. Abre el Jupyter Notebook:
+3. Open Jupyter Notebook:
 ```bash
 jupyter notebook flight_delay_analysis.ipynb
 ```
 
-## Descripción del Análisis
+## Description of the Analysis
 
-### 1. Caracterización  del Dataset
+### 1. Characterisation of the Dataset
 
-    1. Muestra las primeras filas del dataset: Se inspecciona una muestra inicial de los datos para tener una visión general.
-    2. Información general y descripción estadística: Se proporciona información detallada sobre los tipos de datos y una descripción estadística de las variables numéricas.
-    3. Número de clases de la variable objetivo: Se determina el número de clases para la variable objetivo (retraso > 3 horas) y el tipo de valores que toma.
-    4. Número total de instancias: Se muestra el tamaño total del dataset.
-    5. Valores ausentes: Se identifican y cuantifican los valores ausentes en el dataset.
+1. Display the first rows of the dataset: An initial sample of the data is inspected to get an overview.
+2. General information and statistical description: Detailed information about the data types and a statistical description of the numerical variables is provided.
+    3. Number of classes of the target variable: The number of classes for the target variable (delay > 3 hours) and the type of values it takes are determined.
+4. Total number of instances: The total size of the dataset is displayed.
+5. Missing values: Missing values in the dataset are identified and quantified.
 
+### 2. Exploratory Data Analysis (EDA)
 
-### 2. Análisis Exploratorio de Datos (EDA)
+1. Distribution of arrival delays: The distribution of arrival delays is displayed using histograms and density graphs.
+2. Arrival delays by delay type: Arrival delays are analysed based on whether the delay exceeds 3 hours or not.
+    3. Relationship between delays and distance: The relationship between flight distance and arrival delay is explored using scatter plots.
+4. Actual time vs estimated flight time: Actual flight time is compared with estimated time to assess the accuracy of estimates.
 
-    1. Distribución de los retrasos de llegada: Se visualiza cómo se distribuyen los retrasos de llegada mediante histogramas y gráficos de densidad.
-    2. Retrasos de llegada por clases de retraso: Se analizan los retrasos de llegada en función de si el retraso supera las 3 horas o no.
-    3. Relación entre retrasos y distancia: Se explora la relación entre la distancia del vuelo y el retraso de llegada utilizando gráficos de dispersión.
-    4. Tiempo real vs tiempo estimado de vuelo: Se compara el tiempo real de vuelo con el tiempo estimado para evaluar la precisión de las estimaciones.
+### 3. Data Preprocessing
 
-
-
-### 3. Preprocesamiento de Datos
-
-    1. Tratamiento de valores ausentes: Se reemplazan los valores ausentes con la moda de cada columna.
-    2. Tratamiento de valores duplicados: Se eliminan las filas duplicadas para asegurar la calidad del dataset.
-    3. Codificación de variables categóricas: Se codifican las variables categóricas en valores numéricos para su uso en el modelado.
+1. Treatment of missing values: Missing values are replaced with the mode of each column.
+2. Treatment of duplicate values: Duplicate rows are removed to ensure the quality of the dataset.
+3. Coding of categorical variables: Categorical variables are coded into numerical values for use in modelling.
 
 
-### 4. Modelado
+### 4. Modelling
 
-    1. División del dataset: El dataset se divide en conjuntos de entrenamiento y prueba (80% entrenamiento, 20% prueba).
-    2. Entrenamiento del modelo de regresión lineal: Se entrena un modelo de regresión lineal utilizando el conjunto de entrenamiento.
-    3. Evaluación del modelo: Se evalúa el rendimiento del modelo utilizando métricas como el error cuadrático medio (MSE) y el coeficiente de determinación (R^2). Se comparan las predicciones del modelo con los valores reales en un gráfico.
+ 1. Dataset division: The dataset is divided into training and test sets (80% training, 20% test).
+2. Linear regression model training: A linear regression model is trained using the training set.
+3. Model evaluation: The model's performance is evaluated using metrics such as mean square error (MSE) and coefficient of determination (R^2). The model's predictions are compared with the actual values in a graph.
